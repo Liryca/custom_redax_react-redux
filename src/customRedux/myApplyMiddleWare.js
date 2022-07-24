@@ -11,9 +11,8 @@ export function myApplyMiddleware(...middlewares) {
                 for (const fn of [...middlewares].reverse()) {
                     next = fn(storeApi)(next)
                 }
-
-                next(action)
-                console.log("enchancedDispatch");
+            
+                next(action)   
             }
 
             return {

@@ -15,7 +15,6 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     increment: (type) => {
-      console.log(type)
       dispatch(type)
     }
   }

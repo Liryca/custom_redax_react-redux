@@ -2,18 +2,20 @@
  const actionIncrement = { type: 'INCREMENT_COUNT' };
  const actionDecrement = { type: 'DECREMENT_COUNT' };
 
-export function incrementCounter() {
-    return function (dispatch) {
+export function incrementCounter(number) {
+    return function (dispatch,getState) {
         dispatch({
-            type:actionIncrement.type
+            type: actionIncrement.type,
+            number
         })    
     }
 }
 
-export function decrementCounter() {
-    return function (dispatch) {
+export function decrementCounter(number) {
+    return function (dispatch,getState) {
         dispatch({
-            type:actionDecrement.type
+            type: actionDecrement.type,
+            number
         })
     }
 
