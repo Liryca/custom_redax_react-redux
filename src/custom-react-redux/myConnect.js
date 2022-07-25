@@ -1,30 +1,28 @@
-import { useEffect, useState, createContext, useContext } from "react";
-
-const Context = createContext();
-
-export function Provider({ store, children }) {
-    return <Context.Provider value={store}>{children}</Context.Provider>
-}
+import { useEffect, useState, useContext } from "react";
+import { Context } from "./MyProvader"
 
 export function connect(mapStateToProps, mapDispatchToProps) {
     return function (Component) {
         return function WrappedComponent(props) {
-            const store = useContext(Context)
 
+            const store = useContext(Context)
+            
             const [state, setState] = useState(store.getState())
 
-            console.log(state)
+         const a =   useEffect(() => {
 
-            useEffect(() => {
                 function handleChange() {
                     setState(store.getState())
+                    console.log(state)
                 }
-                const unsubscribe = store.subscribe(handleChange);
 
-                return () => {
+                const unsubscribe = store.subscribe(handleChange);
+            
+             return () => {
                     unsubscribe();
                 }
-            }, [store])
+         }, [store, state])
+         
             return (
                 <Component
                     {...props}

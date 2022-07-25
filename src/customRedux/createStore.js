@@ -6,11 +6,15 @@ export function createStore(reducer, initialState, enchancer) {
     }
     let currentState = initialState;
     let listeners = [];
-
+    console.log(listeners);
     return {
         dispatch(action) {
             currentState = reducer(currentState, action)
-            listeners.forEach(fn => fn());
+           
+            listeners.forEach(fn => {
+                fn()
+            } );
+            console.log(listeners);
             console.log("result", currentState)
 
         },
